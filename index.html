@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>For Mishtu 💖</title>
+
+<style>
+body {
+    margin:0;
+    font-family: 'Segoe UI', sans-serif;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+    background: url('bg.jpg') no-repeat center center/cover;
+}
+
+body::before {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:rgba(0,0,0,0.65);
+}
+
+.card {
+    position:relative;
+    z-index:1;
+    max-width:320px;
+    padding:25px;
+    border-radius:20px;
+    backdrop-filter: blur(15px);
+    background: rgba(255,255,255,0.1);
+    box-shadow: 0 0 40px rgba(0,0,0,0.5);
+    animation: fadeIn 1.5s ease;
+}
+
+img {
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    border:2px solid white;
+    box-shadow:0 0 25px rgba(255,255,255,0.7);
+    margin-bottom:10px;
+}
+
+button {
+    padding:10px 20px;
+    margin-top:15px;
+    border:none;
+    border-radius:25px;
+    font-weight:bold;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+button:hover { transform:scale(1.1); }
+
+.main { background:white; color:black; }
+.yes { background:#00ffae; color:black; }
+.no { background:#ff4d6d; color:white; position:absolute; }
+
+.hidden { display:none; }
+
+@keyframes fadeIn {
+    from {opacity:0; transform:translateY(20px);}
+    to {opacity:1; transform:translateY(0);}
+}
+
+.heart {
+    position:absolute;
+    font-size:20px;
+    animation: float 6s linear infinite;
+}
+
+@keyframes float {
+    0% {transform: translateY(100vh); opacity:0;}
+    50% {opacity:1;}
+    100% {transform: translateY(-10vh); opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<!-- 🎵 BACKGROUND SONG -->
+<audio id="music" preload="auto" loop>
+    <source src="https://media.vocaroo.com/mp3/1fn1tYM5asAz" type="audio/mpeg">
+</audio>
+
+<div class="card">
+
+<img src="mishtu.jpg">
+
+<h2 id="typing"></h2>
+
+<p>I was doing absolutely fine...</p>
+
+<button class="main" onclick="startExperience()">Continue</button>
+
+<div id="p2" class="hidden">
+<p>Then YOU happened 🙄</p>
+<button onclick="next2()">Continue 😏</button>
+</div>
+
+<div id="p3" class="hidden">
+<p>You’re just… always in my head now 😤</p>
+<button onclick="next3()">Explain 😌</button>
+</div>
+
+<div id="p4" class="hidden">
+<p>And don’t act innocent… I know you enjoy this 😏</p>
+<button onclick="question()">Last question</button>
+</div>
+
+<div id="q" class="hidden">
+<p>Are you always this cute… or just with me? 😌</p>
+
+<button class="yes" onclick="final()">Yes 😎</button>
+<button class="no" id="noBtn">No 😤</button>
+</div>
+
+<div id="final" class="hidden">
+<p>
+I knew it 😏  
+<br><br>
+Careful… I might get used to you 💖  
+<br><br><br>
+
+But on a serious note…  
+<br><br>
+I know things haven’t been easy for you lately.  
+And I may not always have the perfect words…  
+but I just want you to know you don’t have to handle everything alone.  
+
+<br><br>
+You’re stronger than you think…  
+and even on your worst days, you’re still someone worth smiling for.  
+
+<br><br>
+So take your time… breathe…  
+and if things ever feel too heavy,  
+I’m right here. 💖
+</p>
+</div>
+
+</div>
+
+<script>
+// typing effect
+let text = "Hey Mishtu 😌";
+let i = 0;
+function type(){
+    if(i < text.length){
+        document.getElementById("typing").innerHTML += text.charAt(i);
+        i++;
+        setTimeout(type, 80);
+    }
+}
+type();
+
+// START → play music
+function startExperience(){
+    document.getElementById("p2").style.display="block";
+
+    const music = document.getElementById("music");
+    music.play().catch(() => {
+        console.log("Audio blocked");
+    });
+}
+
+function next2(){ document.getElementById("p3").style.display="block"; }
+function next3(){ document.getElementById("p4").style.display="block"; }
+function question(){ document.getElementById("q").style.display="block"; }
+function final(){ document.getElementById("final").style.display="block"; }
+
+// NO button escape 😏
+const noBtn=document.getElementById("noBtn");
+document.addEventListener("mousemove",()=>{
+    noBtn.style.left=Math.random()*window.innerWidth+"px";
+    noBtn.style.top=Math.random()*window.innerHeight+"px";
+});
+
+// floating hearts ❤️
+setInterval(()=>{
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤️";
+    heart.style.left=Math.random()*100+"vw";
+    document.body.appendChild(heart);
+    setTimeout(()=>heart.remove(),6000);
+},400);
+</script>
+
+</body>
+</html>
